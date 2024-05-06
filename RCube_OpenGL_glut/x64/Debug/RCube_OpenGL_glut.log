@@ -1,0 +1,18 @@
+﻿  RCube_OpenGL_glut.cpp
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutInit в функции main.
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutInitDisplayMode в функции main.
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutInitWindowPosition в функции main.
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutInitWindowSize в функции main.
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutMainLoop в функции main.
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutCreateWindow в функции main.
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutPostRedisplay в функции "void __cdecl keys(unsigned char,int,int)" (?keys@@YAXEHH@Z).
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutSwapBuffers в функции "void __cdecl display(void)" (?display@@YAXXZ).
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutDisplayFunc в функции main.
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutReshapeFunc в функции main.
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutKeyboardFunc в функции main.
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutMouseFunc в функции main.
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutTimerFunc в функции "void __cdecl keys(unsigned char,int,int)" (?keys@@YAXEHH@Z).
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutSpecialFunc в функции main.
+RCube_OpenGL_glut.obj : error LNK2019: ссылка на неразрешенный внешний символ glutSolidCube в функции "public: void __cdecl Cube::draw(void)" (?draw@Cube@@QEAAXXZ).
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\lib\x64\glut32.lib : warning LNK4272: тип компьютера библиотеки "x86" конфликтует с типом целевого компьютера "x64"
+C:\Users\hlupi\source\repos\RCube_OpenGL_glut\x64\Debug\RCube_OpenGL_glut.exe : fatal error LNK1120: неразрешенных внешних элементов: 15
