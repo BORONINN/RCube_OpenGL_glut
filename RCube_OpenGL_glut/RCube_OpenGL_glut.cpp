@@ -126,8 +126,8 @@ void timerCallback(int) {
 //}
 
 bool WhiteCrossSloved(RCube& cube) {
-	if (cube.a[0][1][0].miniCubeColor[4] == 16777215 and
-		cube.a[0][1][2].miniCubeColor[4] == 16777215 and
+	if (cube.a[0][1][0].miniCubeColor[4] == 16777215 and             //1 3 4   -- death ----> complete
+		cube.a[0][1][2].miniCubeColor[4] == 16777215 and			 //5 1 2 5 -- death ----> complete 
 		cube.a[0][0][1].miniCubeColor[4] == 16777215 and
 		cube.a[0][2][1].miniCubeColor[4] == 16777215 ) {
 		return true;
@@ -135,6 +135,7 @@ bool WhiteCrossSloved(RCube& cube) {
 	return false;
 }
 void rotationFull(int index, int angle) {
+	std::cout <<"rotationFull: " <<  index << " " << angle << '\n';
 	cube.Rotate(index, angle);
 	while (cube.RotNOW != -1) {
 		cube.Rotate(index, angle);
@@ -150,7 +151,7 @@ void sloveWhiteCross(RCube& cube) {
 		if (cube.a[2][2][1].miniCubeColor[5] == 16777215) {  //бело-синее ребро за 2 движения
 			std::cout << "1" << '\n';
 			while (cube.a[0][2][1].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			while (cube.a[0][2][1].miniCubeColor[4] != 16777215) {
@@ -162,7 +163,7 @@ void sloveWhiteCross(RCube& cube) {
 		if (cube.a[2][1][0].miniCubeColor[5] == 16777215) {  //бело-оранжевое ребро за 2 движения
 			std::cout << "2" << '\n';
 			while (cube.a[0][1][0].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			while (cube.a[0][1][0].miniCubeColor[4] != 16777215) {
@@ -173,7 +174,7 @@ void sloveWhiteCross(RCube& cube) {
 		if (cube.a[2][0][1].miniCubeColor[5] == 16777215) { //бело-зеленое ребро за 2 движения
 			std::cout << "3" << '\n';
 			while (cube.a[0][0][1].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			while (cube.a[0][0][1].miniCubeColor[4] != 16777215) {
@@ -184,7 +185,7 @@ void sloveWhiteCross(RCube& cube) {
 		if (cube.a[2][1][2].miniCubeColor[5] == 16777215) { //бело-красное ребро за 2 движения
 			std::cout << "4" << '\n';
 			while (cube.a[0][1][2].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			while (cube.a[0][1][2].miniCubeColor[4] != 16777215) {
@@ -198,7 +199,7 @@ void sloveWhiteCross(RCube& cube) {
 		if (cube.a[2][2][1].miniCubeColor[3] == 16777215) {  //бело-синее ребро (развернуто)
 			std::cout << "5" << '\n';
 			while (cube.a[0][2][1].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			rotationFull(5, -6);
@@ -209,7 +210,7 @@ void sloveWhiteCross(RCube& cube) {
 		if (cube.a[2][1][0].miniCubeColor[1] == 16777215) {  //бело-оранжевое ребро (развернуто)
 			std::cout << "6" << '\n';
 			while (cube.a[0][1][0].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			rotationFull(5, -6);
@@ -220,7 +221,7 @@ void sloveWhiteCross(RCube& cube) {
 		if (cube.a[2][0][1].miniCubeColor[2] == 16777215) { //бело-зеленое ребро (развернуто)
 			std::cout << "7" << '\n';
 			while (cube.a[0][1][0].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			rotationFull(5, -6);
@@ -231,7 +232,7 @@ void sloveWhiteCross(RCube& cube) {
 		if (cube.a[2][1][2].miniCubeColor[0] == 16777215) { //бело-красное ребро (развернуто)
 			std::cout << "8" << '\n';
 			while (cube.a[0][1][2].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			rotationFull(5, -6);
@@ -246,7 +247,7 @@ void sloveWhiteCross(RCube& cube) {
 		if (cube.a[1][2][0].miniCubeColor[1] == 16777215) {  //синее-оранжевое ребро (оранжевое)
 			std::cout << "9" << '\n';
 			while (cube.a[0][2][1].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			rotationFull(3, 6);
@@ -254,7 +255,7 @@ void sloveWhiteCross(RCube& cube) {
 		if (cube.a[1][2][0].miniCubeColor[3] == 16777215) {  //синее-оранжевое ребро (синий)
 			std::cout << "10" << '\n';
 			while (cube.a[0][1][0].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			rotationFull(0, 6);
@@ -266,7 +267,7 @@ void sloveWhiteCross(RCube& cube) {
 		if (cube.a[1][0][0].miniCubeColor[1] == 16777215) {  //зелено-оранжевое ребро (оранжевое)        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  3   11
 			std::cout << "11" << '\n';
 			while (cube.a[0][0][1].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			rotationFull(2, 6);
@@ -275,7 +276,7 @@ void sloveWhiteCross(RCube& cube) {
 		if (cube.a[1][0][0].miniCubeColor[2] == 16777215) { //зелено-оранжевое ребро (зелено)
 			std::cout << "12" << '\n';
 			while (cube.a[0][1][0].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			rotationFull(0, -6);
@@ -285,41 +286,41 @@ void sloveWhiteCross(RCube& cube) {
 
 
 
-		if (cube.a[1][0][2].miniCubeColor[0] == 16777215) {  //зелено-красное ребро (зелено)
+		if (cube.a[1][0][2].miniCubeColor[0] == 16777215) {  //зелено-красное ребро (красный)
 			std::cout << "13" << '\n';
-			while (cube.a[0][1][2].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
-				display();
-			}
-			rotationFull(1, -6);
-
-		}
-		if (cube.a[1][0][0].miniCubeColor[2] == 16777215) { //зелено-красное ребро (красное)
-			std::cout << "14" << '\n';
 			while (cube.a[0][0][1].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			rotationFull(2, -6);
 
 		}
+		if (cube.a[1][0][2].miniCubeColor[2] == 16777215) { //зелено-красное ребро (зеленый)
+			std::cout << "14" << '\n';
+			while (cube.a[0][1][2].miniCubeColor[4] == 16777215) {
+				rotationFull(4, 6);
+				display();
+			}
+			rotationFull(1, -6);
+
+		}
 
 
 
 
-		if (cube.a[1][0][0].miniCubeColor[3] == 16777215) {  //сине-красное ребро (синие)
+		if (cube.a[1][2][2].miniCubeColor[3] == 16777215) {  //сине-красное ребро (синие)
 			std::cout << "15" << '\n';
 			while (cube.a[0][1][2].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			rotationFull(1, 6);
 
 		}
-		if (cube.a[1][0][0].miniCubeColor[0] == 16777215) { //сине-красное ребро (красное)
+		if (cube.a[1][2][2].miniCubeColor[0] == 16777215) { //сине-красное ребро (красное)
 			std::cout << "16" << '\n';
 			while (cube.a[0][2][1].miniCubeColor[4] == 16777215) {
-				cube.Rotate(4, 6);
+				rotationFull(4, 6);
 				display();
 			}
 			rotationFull(3, -6);
@@ -575,6 +576,7 @@ void timer(int)
 		if (cube.RotNOW == -1) {
 			int r = rand() % 6 + '0';
 			keys(r, 0, 0);
+			std::cout << "random: "<< r % 6  << '\n';
 		}
 		else {
 			cube.Rotate(cube.RotNOW, 6);
