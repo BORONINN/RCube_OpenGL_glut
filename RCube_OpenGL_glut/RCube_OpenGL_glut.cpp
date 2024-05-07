@@ -356,12 +356,7 @@ void sloveWhiteCross(RCube& cube) {
 }
 
 bool WhiteCorrectCrossSloved(RCube& cube) {
-	if (/*cube.a[0][1][0].miniCubeColor[4] == 16777215 and
-		cube.a[0][1][2].miniCubeColor[4] == 16777215 and
-		cube.a[0][0][1].miniCubeColor[4] == 16777215 and
-		cube.a[0][2][1].miniCubeColor[4] == 16777215 and*/
-
-		cube.a[0][1][0].miniCubeColor[1] == 16737792 and
+	if (cube.a[0][1][0].miniCubeColor[1] == 16737792 and
 		cube.a[0][1][2].miniCubeColor[0] == 16711680 and
 		cube.a[0][0][1].miniCubeColor[2] == 65331    and
 		cube.a[0][2][1].miniCubeColor[3] == 255) {
@@ -370,12 +365,21 @@ bool WhiteCorrectCrossSloved(RCube& cube) {
 	return false;
 }
 
+//2 : 1
+//< -------------- >
+//2 : 2
+//< -------------- >
+//2 : 4
+//< -------------- >
+//< -------------- >
+
 void sloveCorrectWhiteCross(RCube& cube) {
 	while (!WhiteCorrectCrossSloved(cube)) {
 		bool flag = false;
-		if (cube.a[0][0][1].miniCubeColor[2] == 65331) {
-			std::cout << "2: 1" << '\n';
+		if (cube.a[0][0][1].miniCubeColor[2] == 65331) {  //зеленый
+			std::cout << "2 : 1" << '\n';
 			if (cube.a[0][1][0].miniCubeColor[1] == 16737792) { //зеленый и оранжевый	корректен
+				std::cout << "	2: 1.1" << '\n';
 				rotationFull(1, -6);
 				rotationFull(4, 6);
 				rotationFull(1, 6);
@@ -383,6 +387,7 @@ void sloveCorrectWhiteCross(RCube& cube) {
 				rotationFull(1, -6);
 			}
 			else if (cube.a[0][1][2].miniCubeColor[0] == 16711680) { //зеленый и красный  корректен
+				std::cout << "	2: 1.2" << '\n';
 				rotationFull(3, -6);
 				rotationFull(4, 6);
 				rotationFull(3, 6);
@@ -390,28 +395,31 @@ void sloveCorrectWhiteCross(RCube& cube) {
 				rotationFull(3, -6);
 			}
 			else if (cube.a[0][2][1].miniCubeColor[3] == 255) { //зеленый и синий  корректен  (противоположные) 
+				std::cout << "	2: 1.3" << '\n';
 				rotationFull(1, -6);
 				rotationFull(4, 6);
 				rotationFull(1, 6);
 				rotationFull(4, -6);
 				rotationFull(1, -6);
 
-				//rotationFull(4, -6);
-				//flag = true;
+				rotationFull(4, -6);
+				flag = true;
 			}
 		}
 
-		else if (cube.a[0][1][2].miniCubeColor[0] == 16711680) {
+		else if (cube.a[0][1][2].miniCubeColor[0] == 16711680 ) {  //красный
 			std::cout << "2: 2" << '\n';
 
 			if (cube.a[0][0][1].miniCubeColor[2] == 65331) { //красный и зеленый	корректен
+				std::cout << "	2: 2.1" << '\n';
 				rotationFull(3, -6);
 				rotationFull(4, 6);
 				rotationFull(3, 6);
 				rotationFull(4, -6);
 				rotationFull(3, -6);
 			}
-			else if (cube.a[0][2][1].miniCubeColor[2] == 255) { //красный и синий	корректен
+			else if (cube.a[0][2][1].miniCubeColor[3] == 255) { //красный и синий	корректен
+				std::cout << "	2: 2.2" << '\n';
 				rotationFull(0, 6);
 				rotationFull(4, 6);
 				rotationFull(0, -6);
@@ -419,27 +427,30 @@ void sloveCorrectWhiteCross(RCube& cube) {
 				rotationFull(0, 0);
 			}
 			else if (cube.a[0][1][0].miniCubeColor[1] == 16737792) { //красный и оранжевый	корректен  (противоположные)  
+				std::cout << "	2: 2.3" << '\n';
 				rotationFull(3, -6);
 				rotationFull(4, 6);
 				rotationFull(3, 6);
 				rotationFull(4, -6);
 				rotationFull(3, -6);
 
-				//rotationFull(4, -6);
-				//flag = true;
+				rotationFull(4, -6);
+				flag = true;
 			}
 		}
 
-		else if (cube.a[0][2][1].miniCubeColor[2] == 255) {
+		else if (cube.a[0][2][1].miniCubeColor[3] == 255) {  //синий
 			std::cout << "2: 3" << '\n';
-			if (cube.a[0][0][1].miniCubeColor[2] == 16711680) { //синий красный   корректен
+			if (cube.a[0][1][2].miniCubeColor[0] == 16711680) { //синий красный   корректен
+				std::cout << "	2: 3.1" << '\n';
 				rotationFull(0, 6);
 				rotationFull(4, 6);
 				rotationFull(0, -6);
 				rotationFull(4, -6);
 				rotationFull(0, 0);
 			}
-			else if (cube.a[0][1][0].miniCubeColor[1] == 16737792) { //снисй и оранжевый	корректен
+			else if (cube.a[0][1][0].miniCubeColor[1] == 16737792) { //синий и оранжевый	корректен
+				std::cout << "	2: 3.2" << '\n';
 				rotationFull(2, 6);
 				rotationFull(4, 6);
 				rotationFull(2, -6);
@@ -447,21 +458,22 @@ void sloveCorrectWhiteCross(RCube& cube) {
 				rotationFull(2, 6);
 			}
 			else if (cube.a[0][0][1].miniCubeColor[2] == 65331) { //синий и зеленый	корректен  (противоположные)  
+				std::cout << "	2: 3.3" << '\n';
 				rotationFull(1, -6);
 				rotationFull(4, 6);
 				rotationFull(1, 6);
 				rotationFull(4, -6);
 				rotationFull(1, -6);
 
-				//rotationFull(4, -6);
-
-				//flag = true;
+				rotationFull(4, -6);
+				flag = true;
 			}
 		}
 
-		else if (cube.a[0][1][0].miniCubeColor[1] == 16737792) {
+		else if (cube.a[0][1][0].miniCubeColor[1] == 16737792) {  //оранжевый
 			std::cout << "2: 4" << '\n';
-			if (cube.a[0][2][1].miniCubeColor[2] == 255) { //оранжевый и синий  корректен
+			if (cube.a[0][2][1].miniCubeColor[3] == 255) { //оранжевый и синий  корректен
+				std::cout << "	2: 4.1" << '\n';
 				rotationFull(2, 6);
 				rotationFull(4, 6);
 				rotationFull(2, -6);
@@ -469,6 +481,7 @@ void sloveCorrectWhiteCross(RCube& cube) {
 				rotationFull(2, 6);
 			}
 			else if (cube.a[0][0][1].miniCubeColor[2] == 65331) { //оранжевый и зеленый	корректен
+				std::cout << "	2: 4.2" << '\n';
 				rotationFull(1, -6);
 				rotationFull(4, 6);
 				rotationFull(1, 6);
@@ -476,19 +489,19 @@ void sloveCorrectWhiteCross(RCube& cube) {
 				rotationFull(1, -6);
 			}
 			else if (cube.a[0][1][2].miniCubeColor[0] == 16711680) { //оранжевый и красный	корректен  (противоположные)  
+				std::cout << "	2: 4.3" << '\n';
 				rotationFull(3, -6);
 				rotationFull(4, 6);
 				rotationFull(3, 6);
 				rotationFull(4, -6);
 				rotationFull(3, -6);
 
-				//rotationFull(4, -6);
-
-				//flag = true;
+				rotationFull(4, -6);
+				flag = true;
 			}
 		}
 		if (!WhiteCorrectCrossSloved(cube)) {
-			std::cout << " dddddddddddddddddddddddddddddddddddddddddddddd " << '\n';
+			std::cout << " <--------------> " << '\n';
 			rotationFull(4, 6);
 		}
 
@@ -497,14 +510,6 @@ void sloveCorrectWhiteCross(RCube& cube) {
 
 
 }
-//2: 1
-//ddddddddddd
-//2 : 2
-//ddddddddddd
-//2 : 4
-//ddddddddddd
-//ddddddddddd
-
 
 
 void keys(unsigned char key, int, int)
@@ -517,7 +522,7 @@ void keys(unsigned char key, int, int)
 
 	if (cube.RotNOW == -1 && key == '6') {
 		sloveWhiteCross(cube);
-		//sloveCorrectWhiteCross(cube);
+		sloveCorrectWhiteCross(cube);
 	}
 	if (key == '7') {
 		cube.clear(CUBE_SIZE, c);
@@ -527,7 +532,7 @@ void keys(unsigned char key, int, int)
 		Movment = 1 - Movment;
 	}
 	if (key == '9') {
-		sloveCorrectWhiteCross(cube);
+		//sloveCorrectWhiteCross(cube);
 	}
 
 	else if (key == 'w' or key == 'a' or key == 's' or key == 'd') {
