@@ -648,16 +648,6 @@ void SloveFirstLayer(RCube& cube) {
 
 		//проверяем, есть ли в нижнем слое белый цвет, который надор вытащить наверх        !!!!!!!!!! если стоит правильный не трогаем !!!!!!!!!!!
 
-		//cube.a[0][0][0].miniCubeColor[0] == 16737792 and cube.a[0][0][0].miniCubeColor[1] == 65331 and cube.a[0][0][0].miniCubeColor[4] == 16777215 and
-		//	cube.a[0][0][2].miniCubeColor[0] == 16711680 and cube.a[0][0][2].miniCubeColor[2] == 65331 and cube.a[0][0][2].miniCubeColor[4] == 16777215 and
-		//	cube.a[0][2][0].miniCubeColor[1] == 16737792 and cube.a[0][2][0].miniCubeColor[3] == 255 and cube.a[0][2][0].miniCubeColor[4] == 16777215 and
-		//	cube.a[0][2][2].miniCubeColor[0] == 16711680 and cube.a[0][2][2].miniCubeColor[3] == 255 and cube.a[0][2][2].miniCubeColor[4] == 16777215) {
-
-		//3: 1
-		//3 : 1.1
-		//3 : 2
-		//3 : 2.2
-		//orange green 0 white 0    (0 0 0)
 
 		for (int i = 0; i < 6; i++) {
 			if (cube.a[0][0][0].miniCubeColor[i] == 16777215) { 
@@ -812,6 +802,314 @@ void SloveFirstLayer(RCube& cube) {
 }
 
 
+
+
+
+bool SecondLayerSloved(RCube& cube) {
+	//  16711680  16737792   65331    255       16777215  16776960
+	//  красный  оранжевый  зеленый   синий     белый     желтый 
+	if (WhiteCrossSloved(cube) and
+		WhiteCorrectCrossSloved(cube) and
+		FirstLayerSloved(cube) and
+		cube.a[1][0][0].miniCubeColor[1] == 16737792 and cube.a[1][0][0].miniCubeColor[2] == 65331 and 
+		cube.a[1][0][2].miniCubeColor[0] == 16711680 and cube.a[1][0][2].miniCubeColor[2] == 65331 and
+		cube.a[1][2][0].miniCubeColor[1] == 16737792 and cube.a[1][2][0].miniCubeColor[3] == 255 and
+		cube.a[1][2][2].miniCubeColor[0] == 16711680 and cube.a[1][2][2].miniCubeColor[3] == 255) {
+		return true;
+	}
+	return false;
+}
+
+// синий  зеленый  красный      оранжевый    желтый      белый
+// 255    65331    16711680     16737792     16776960     16777215
+std::vector <int> colorsTempVecCopy;
+void SloveSecondLayer(RCube& cube) {
+	bool flag;
+
+	while (!SecondLayerSloved(cube)) {
+
+		while (true) {
+			colorsTempVec.clear();
+			colorsTempVecCopy.clear();
+			flag = false;
+			for (int i = 0; i < 6; i++) {
+				if (cube.a[2][1][0].miniCubeColor[i] == 16776960) {   //смотрим желто-оранжевое ребро и проверяем наличе там желтого цвета
+					flag = true;
+				}
+				else if (cube.a[2][1][0].miniCubeColor[i] != 0) {
+					colorsTempVec.push_back(cube.a[2][1][0].miniCubeColor[i]);
+					colorsTempVecCopy.push_back(cube.a[2][1][0].miniCubeColor[i]);
+				}
+			}
+			if (!flag) {
+				std::cout << "4" << '\n';
+				std::sort(colorsTempVecCopy.begin(), colorsTempVecCopy.end());
+				if (colorsTempVecCopy[0] == 65331 and colorsTempVecCopy[1] == 16737792) {  // оранжево-зеленое ребро 2 варианта
+					std::cout << "4.1" << '\n';
+
+					if (cube.a[2][1][0].miniCubeColor[1] == 16737792) {  //cube.a[2][1][0].miniCubeColor[1]  ---> та сторона, которая смотрит на нас
+						rotationFull(5, 6);
+						rotationFull(2, -6);
+						rotationFull(5, -6);
+						rotationFull(2, 6);
+						rotationFull(5, -6);
+						rotationFull(0, 6);
+						rotationFull(5, 6);
+						rotationFull(0, -6);
+					}
+					else if (cube.a[2][1][0].miniCubeColor[1] == 65331) {
+						rotationFull(5, -6);  // повернули к нужному месту 
+
+						rotationFull(5, -6);
+						rotationFull(0, 6);
+						rotationFull(5, 6);
+						rotationFull(0, -6);
+						rotationFull(5, 6);
+						rotationFull(2, -6);
+						rotationFull(5, -6);
+						rotationFull(2, 6);
+
+
+					}
+				}
+				else if (colorsTempVecCopy[0] == 255 and colorsTempVecCopy[1] == 16711680) {  //сине-красное 2 варианта
+					std::cout << "4.2" << '\n';
+
+					if (cube.a[2][1][0].miniCubeColor[1] == 255) {
+						rotationFull(5, 6);
+
+						rotationFull(5, -6);
+						rotationFull(1, -6);
+						rotationFull(5, 6);
+						rotationFull(1, 6);
+						rotationFull(5, 6);
+						rotationFull(3, 6);
+						rotationFull(5, -6);
+						rotationFull(3, -6);
+					}
+					else if (cube.a[2][1][0].miniCubeColor[1] == 16711680) {
+						rotationFull(5, 6);
+						rotationFull(5, 6);
+
+						rotationFull(5, 6);
+						rotationFull(3, 6);
+						rotationFull(5, -6);
+						rotationFull(3, -6);
+						rotationFull(5, -6);
+						rotationFull(1, -6);
+						rotationFull(5, 6);
+						rotationFull(1, 6);
+					}
+				}
+				else if (colorsTempVecCopy[0] == 255 and colorsTempVecCopy[1] == 16737792) {  //оранжево-синее   2 варианта
+					std::cout << "4.3" << '\n';
+
+					if (cube.a[2][1][0].miniCubeColor[1] == 255) {
+						rotationFull(5, 6);
+
+						rotationFull(5, 6);
+						rotationFull(0, -6);
+						rotationFull(5, -6);
+						rotationFull(0, 6);
+						rotationFull(5, -6);
+						rotationFull(3, -6);
+						rotationFull(5, 6);
+						rotationFull(3, 6);
+					}
+					else if (cube.a[2][1][0].miniCubeColor[1] == 16737792) {
+						rotationFull(5, -6);
+						rotationFull(3, -6);
+						rotationFull(5, 6);
+						rotationFull(3, 6);
+						rotationFull(5, 6);
+						rotationFull(0, -6);
+						rotationFull(5, -6);
+						rotationFull(0, 6);
+					}
+				}
+				else if (colorsTempVecCopy[0] == 65331 and colorsTempVecCopy[1] == 16711680) {   //красно-зеленое   2 варианта  65331    16711680 
+					std::cout << "4.4" << '\n';
+
+					if (cube.a[2][1][0].miniCubeColor[1] == 65331) {
+
+						std::cout << "4.4 --> green" << '\n';
+
+						rotationFull(5, -6);
+
+						rotationFull(5, 6);
+						rotationFull(1, 6);
+						rotationFull(5, -6);
+						rotationFull(1, -6);
+						rotationFull(5, -6);
+						rotationFull(2, 6);
+						rotationFull(5, 6);
+						rotationFull(2, -6);
+					}
+					else if (cube.a[2][1][0].miniCubeColor[1] == 16711680) {
+						std::cout << "4.4 --> red" << '\n';
+
+						rotationFull(5, 6);
+						rotationFull(5, 6);
+
+						rotationFull(5, -6);
+						rotationFull(2, 6);
+						rotationFull(5, 6);
+						rotationFull(2, -6);
+						rotationFull(5, 6);
+						rotationFull(1, 6);
+						rotationFull(5, -6);
+						rotationFull(1, -6);
+					}
+				}
+			}
+			else {
+				bool Yflag1 = false, Yflag2 = false, Yflag3 = false, Yflag4 = false;
+				bool Ansflag1 = false, Ansflag2 = false, Ansflag3 = false, Ansflag4 = false;  // проверяем, остались ли ребра без желтого цвета, если да, то делаем поворот, иначе проверяем уже установленные
+
+				for (int i = 0; i < 6; i++) {
+					if (cube.a[2][0][1].miniCubeColor[i] == 16776960) {
+						Yflag1 = true;
+						break;
+					}
+				}
+				if (!Yflag1) Ansflag1 = true;
+
+				for (int i = 0; i < 6; i++) {
+					if (cube.a[2][1][0].miniCubeColor[i] == 16776960) {
+						Yflag2 = true;
+						break;
+					}
+				}
+				if (!Yflag2) Ansflag2 = true;
+
+				for (int i = 0; i < 6; i++) {
+					if (cube.a[2][1][2].miniCubeColor[i] == 16776960) {
+						Yflag3 = true;
+						break;
+					}
+				}
+				if (!Yflag3) Ansflag3 = true;
+
+				for (int i = 0; i < 6; i++) {
+					if (cube.a[2][2][1].miniCubeColor[i] == 16776960) {
+						Yflag4 = true;
+						break;
+					}
+				}
+				if (!Yflag4) Ansflag4 = true;
+
+				if (Ansflag1 or Ansflag2 or Ansflag3 or Ansflag4) {
+					std::cout << "not only yellow" << '\n';
+					rotationFull(5, 6);
+				}
+				else {
+					std::cout << "4.break" << '\n';
+					break;
+				}
+
+			}
+		}
+
+		//cube.a[1][0][0].miniCubeColor[1] == 16737792 and cube.a[1][0][0].miniCubeColor[2] == 65331 and
+		//cube.a[1][0][2].miniCubeColor[0] == 16711680 and cube.a[1][0][2].miniCubeColor[2] == 65331 and
+		//cube.a[1][2][0].miniCubeColor[1] == 16737792 and cube.a[1][2][0].miniCubeColor[3] == 255 and
+		//cube.a[1][2][2].miniCubeColor[0] == 16711680 and cube.a[1][2][2].miniCubeColor[3] == 255
+		
+		bool rotateFlag = false;
+		if (cube.a[1][0][0].miniCubeColor[1] != 16737792 and cube.a[1][0][0].miniCubeColor[2] != 65331) {  //оранжево-зеленое ребро
+			std::cout << "4.1.1" << '\n';
+			flag = false;
+			for (int i = 0; i < 6; i++) {
+				if (cube.a[1][0][0].miniCubeColor[i] == 16776960) {   //проверяем наличе там желтого цвета
+					flag = true;
+				}
+			}
+			if (!flag) {
+				rotateFlag = true;
+				rotationFull(5, -6);
+				rotationFull(0, 6);
+				rotationFull(5, 6);
+				rotationFull(0, -6);
+				rotationFull(5, 6);
+				rotationFull(2, -6);
+				rotationFull(5, -6);
+				rotationFull(2, 6);
+			}
+		}
+
+
+		if (!rotateFlag and cube.a[1][0][2].miniCubeColor[0] != 16711680 and cube.a[1][0][2].miniCubeColor[2] != 65331) {  //красно-зеленое ребро
+			std::cout << "4.2.2" << '\n';
+			flag = false;
+			for (int i = 0; i < 6; i++) {
+				if (cube.a[1][0][2].miniCubeColor[i] == 16776960) {   //проверяем наличе там желтого цвета
+					flag = true;
+				}
+			}
+			if (!flag) {
+				rotateFlag = true;
+				rotationFull(5, -6);
+				rotationFull(2, 6);
+				rotationFull(5, 6);
+				rotationFull(2, -6);
+				rotationFull(5, 6);
+				rotationFull(1, 6);
+				rotationFull(5, -6);
+				rotationFull(1, -6);
+			}
+		}
+
+		if (!rotateFlag and cube.a[1][2][0].miniCubeColor[1] != 16737792 and cube.a[1][2][0].miniCubeColor[3] != 255) {  //оранжево-синее ребро
+			std::cout << "4.3.3" << '\n';
+			flag = false;
+			for (int i = 0; i < 6; i++) {
+				if (cube.a[1][2][0].miniCubeColor[i] == 16776960) {   //проверяем наличе там желтого цвета
+					flag = true;
+				}
+			}
+			if (!flag) {
+				rotateFlag = true;
+				rotationFull(5, -6);
+				rotationFull(3, -6);
+				rotationFull(5, 6);
+				rotationFull(3, 6);
+				rotationFull(5, 6);
+				rotationFull(0, -6);
+				rotationFull(5, -6);
+				rotationFull(0, 6);
+			}
+		}
+
+		if (!rotateFlag and cube.a[1][2][2].miniCubeColor[0] != 16711680 and cube.a[1][2][2].miniCubeColor[3] != 255) {  //красно-синее ребро
+			std::cout << "4.4.4" << '\n';
+			flag = false;
+			for (int i = 0; i < 6; i++) {
+				if (cube.a[1][2][2].miniCubeColor[i] == 16776960) {   //проверяем наличе там желтого цвета
+					flag = true;
+				}
+			}
+			if (!flag) {
+				rotateFlag = true;
+				rotationFull(5, 6);
+				rotationFull(3, 6);
+				rotationFull(5, -6);
+				rotationFull(3, -6);
+				rotationFull(5, -6);
+				rotationFull(1, -6);
+				rotationFull(5, 6);
+				rotationFull(1, 6);
+			}
+		}
+		
+
+	}
+}
+//4
+//4.4
+//have yellow
+
+
+
 void keys(unsigned char key, int, int)
 {
 	if (cube.RotNOW == -1 && key >= '0' && key <= '5')
@@ -824,6 +1122,7 @@ void keys(unsigned char key, int, int)
 		sloveWhiteCross(cube);
 		sloveCorrectWhiteCross(cube);
 		SloveFirstLayer(cube);
+		SloveSecondLayer(cube);
 	}
 	if (key == '7') {
 		cube.clear(CUBE_SIZE, c);
