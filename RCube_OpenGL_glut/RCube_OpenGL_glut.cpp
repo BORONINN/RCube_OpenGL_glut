@@ -1104,9 +1104,137 @@ void SloveSecondLayer(RCube& cube) {
 
 	}
 }
-//4
-//4.4
-//have yellow
+
+
+bool YellowCrossSloved(RCube& cube) {
+	//  16711680  16737792   65331    255       16777215  16776960
+	//  красный  оранжевый  зеленый   синий     белый     желтый 
+	if (WhiteCrossSloved(cube) and
+		WhiteCorrectCrossSloved(cube) and
+		FirstLayerSloved(cube) and
+		SecondLayerSloved(cube) and
+		cube.a[2][0][1].miniCubeColor[5] == 16776960 and 
+		cube.a[2][1][0].miniCubeColor[5] == 16776960 and
+		cube.a[2][1][2].miniCubeColor[5] == 16776960 and
+		cube.a[2][2][1].miniCubeColor[5] == 16776960) {
+		return true;
+	}
+	return false;
+}
+
+void SloveYellowCross(RCube& cube) {
+	while (!YellowCrossSloved(cube)) {
+		int Ycount = 0;
+		bool YGflag = false, YOflag = false, YBflag = false, YRflag = false;
+		if (cube.a[2][0][1].miniCubeColor[5] == 16776960) {
+			Ycount++;
+			YGflag = true;
+		}
+		if (cube.a[2][1][0].miniCubeColor[5] == 16776960) {
+			Ycount++;
+			YOflag = true;
+		}
+		if (cube.a[2][1][2].miniCubeColor[5] == 16776960) {
+			Ycount++;
+			YRflag = true;
+		}
+		if (cube.a[2][2][1].miniCubeColor[5] == 16776960) {
+			Ycount++;
+			YBflag = true;
+		}
+
+		if (Ycount == 2) {
+			if (YOflag and YRflag) {
+				rotationFull(2, 6);
+				rotationFull(0, 6);
+				rotationFull(5, -6);
+				rotationFull(0, -6);
+				rotationFull(5, 6);
+				rotationFull(2, -6);
+			}
+			else if (YBflag and YGflag) {
+				rotationFull(5, 6);
+
+				rotationFull(2, 6);
+				rotationFull(0, 6);
+				rotationFull(5, -6);
+				rotationFull(0, -6);
+				rotationFull(5, 6);
+				rotationFull(2, -6);
+			}
+			else if (YBflag and YRflag) {
+				rotationFull(2, 6);
+				rotationFull(0, 6);
+				rotationFull(5, -6);
+				rotationFull(0, -6);
+				rotationFull(5, 6);
+				rotationFull(0, 6);
+				rotationFull(5, -6);
+				rotationFull(0, -6);
+				rotationFull(5, 6);
+				rotationFull(2, -6);
+			}
+			else if (YBflag and YOflag) {
+				rotationFull(5, 6);
+
+				rotationFull(2, 6);
+				rotationFull(0, 6);
+				rotationFull(5, -6);
+				rotationFull(0, -6);
+				rotationFull(5, 6);
+				rotationFull(0, 6);
+				rotationFull(5, -6);
+				rotationFull(0, -6);
+				rotationFull(5, 6);
+				rotationFull(2, -6);
+			}
+			else if (YGflag and YOflag) {
+				rotationFull(5, 6);
+				rotationFull(5, 6);
+
+				rotationFull(2, 6);
+				rotationFull(0, 6);
+				rotationFull(5, -6);
+				rotationFull(0, -6);
+				rotationFull(5, 6);
+				rotationFull(0, 6);
+				rotationFull(5, -6);
+				rotationFull(0, -6);
+				rotationFull(5, 6);
+				rotationFull(2, -6);
+			}
+			else if (YGflag and YRflag) {
+				rotationFull(5, -6);
+
+				rotationFull(2, 6);
+				rotationFull(0, 6);
+				rotationFull(5, -6);
+				rotationFull(0, -6);
+				rotationFull(5, 6);
+				rotationFull(0, 6);
+				rotationFull(5, -6);
+				rotationFull(0, -6);
+				rotationFull(5, 6);
+				rotationFull(2, -6);
+			}
+		}
+		if (Ycount == 1) {
+			rotationFull(2, 6);  //палка
+			rotationFull(0, 6);
+			rotationFull(5, -6);
+			rotationFull(0, -6);
+			rotationFull(5, 6);
+			rotationFull(2, -6);
+
+			//rotationFull(5, 6);  //U2
+			//rotationFull(5, 6);
+
+
+		}
+		
+
+	}
+}
 
 
 
@@ -1123,6 +1251,7 @@ void keys(unsigned char key, int, int)
 		sloveCorrectWhiteCross(cube);
 		SloveFirstLayer(cube);
 		SloveSecondLayer(cube);
+		SloveYellowCross(cube);
 	}
 	if (key == '7') {
 		cube.clear(CUBE_SIZE, c);
