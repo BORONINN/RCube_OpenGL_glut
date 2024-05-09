@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{F2332253-F74F-4A28-ABB7-6A65F3E57A07}|RCube_OpenGL_glut\\RCube_OpenGL_glut.vcxproj|solutionrelative:RCube_OpenGL_glut\\RCube_OpenGL_glut.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F2332253-F74F-4A28-ABB7-6A65F3E57A07}|RCube_OpenGL_glut\\RCube_OpenGL_glut.vcxproj|C:\\Users\\hlupi\\source\\repos\\RCube_OpenGL_glut\\RCube_OpenGL_glut\\RCubeFunc.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F2332253-F74F-4A28-ABB7-6A65F3E57A07}|RCube_OpenGL_glut\\RCube_OpenGL_glut.vcxproj|solutionrelative:RCube_OpenGL_glut\\RCubeFunc.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F2332253-F74F-4A28-ABB7-6A65F3E57A07}|RCube_OpenGL_glut\\RCube_OpenGL_glut.vcxproj|C:\\Users\\hlupi\\source\\repos\\RCube_OpenGL_glut\\RCube_OpenGL_glut\\MainRCube.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F2332253-F74F-4A28-ABB7-6A65F3E57A07}|RCube_OpenGL_glut\\RCube_OpenGL_glut.vcxproj|solutionrelative:RCube_OpenGL_glut\\MainRCube.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2332253-F74F-4A28-ABB7-6A65F3E57A07}|RCube_OpenGL_glut\\RCube_OpenGL_glut.vcxproj|C:\\Users\\hlupi\\source\\repos\\RCube_OpenGL_glut\\RCube_OpenGL_glut\\RCubeFunc.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F2332253-F74F-4A28-ABB7-6A65F3E57A07}|RCube_OpenGL_glut\\RCube_OpenGL_glut.vcxproj|solutionrelative:RCube_OpenGL_glut\\RCubeFunc.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,27 +26,29 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "RCubeFunc.cpp",
               "DocumentMoniker": "C:\\Users\\hlupi\\source\\repos\\RCube_OpenGL_glut\\RCube_OpenGL_glut\\RCubeFunc.cpp",
               "RelativeDocumentMoniker": "RCube_OpenGL_glut\\RCubeFunc.cpp",
               "ToolTip": "C:\\Users\\hlupi\\source\\repos\\RCube_OpenGL_glut\\RCube_OpenGL_glut\\RCubeFunc.cpp",
               "RelativeToolTip": "RCube_OpenGL_glut\\RCubeFunc.cpp",
-              "ViewState": "AQIAADoBAAAAAAAAAAAtwFMBAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFMBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-04-25T20:15:23.924Z"
+              "WhenOpened": "2024-04-25T20:15:23.924Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "MainRCube.h",
               "DocumentMoniker": "C:\\Users\\hlupi\\source\\repos\\RCube_OpenGL_glut\\RCube_OpenGL_glut\\MainRCube.h",
               "RelativeDocumentMoniker": "RCube_OpenGL_glut\\MainRCube.h",
               "ToolTip": "C:\\Users\\hlupi\\source\\repos\\RCube_OpenGL_glut\\RCube_OpenGL_glut\\MainRCube.h",
               "RelativeToolTip": "RCube_OpenGL_glut\\MainRCube.h",
-              "ViewState": "AQIAADMAAAAAAAAAAAAAACEAAAAhAAAA",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAAAFAAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-04-25T20:08:05.429Z"
+              "WhenOpened": "2024-04-25T20:08:05.429Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -56,7 +58,7 @@
               "RelativeDocumentMoniker": "RCube_OpenGL_glut\\RCube_OpenGL_glut.cpp",
               "ToolTip": "C:\\Users\\hlupi\\source\\repos\\RCube_OpenGL_glut\\RCube_OpenGL_glut\\RCube_OpenGL_glut.cpp",
               "RelativeToolTip": "RCube_OpenGL_glut\\RCube_OpenGL_glut.cpp",
-              "ViewState": "AQIAAP8FAAAAAAAAAAAAAPAFAABDAAAA",
+              "ViewState": "AQIAAGwGAAAAAAAAAAAAAIcGAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-04-25T20:04:09.168Z",
               "EditorCaption": ""

@@ -661,7 +661,7 @@ void SloveFirstLayer(RCube& cube) {
 			}
 		}
 		if (flag) {
-			std::cout << "	 orange green 0 white 0    (0 0 0)" << '\n';
+			std::cout << "	0 orange green 0 white 0    (0 0 0)" << '\n';
 			while (true) {
 				for (int i = 0; i < 6; i++) {  // оранжево-зелено-желтый   (проверка есть ли белый цвет)
 					if (cube.a[2][0][0].miniCubeColor[i] == 16777215) {
@@ -682,121 +682,120 @@ void SloveFirstLayer(RCube& cube) {
 			rotationFull(5, 6);
 
 		}
-
-
-
-		flag = false;
-		flag2 = false;
-		for (int i = 0; i < 6; i++) {
-			if (cube.a[0][0][2].miniCubeColor[i] == 16777215) {   //красно-зелено-белый угол
-				if (cube.a[0][0][2].miniCubeColor[0] == 16711680 and cube.a[0][0][2].miniCubeColor[2] == 65331 and cube.a[0][0][2].miniCubeColor[4] == 16777215) {
-					break;
-				}
-				else {
-					flag = true;
-					break;
-				}
-			}
-
-		}
-		if (flag) {
-			std::cout << "	red 0 green 0 white 0    (0 0 2)" << '\n';
-			while (true) {
-				for (int i = 0; i < 6; i++) {  // красно-зелено-желтый   (проверка есть ли белый цвет)
-					if (cube.a[2][0][2].miniCubeColor[i] == 16777215) {
-						flag2 = true;
+		else {
+			flag = false;
+			flag2 = false;
+			for (int i = 0; i < 6; i++) {
+				if (cube.a[0][0][2].miniCubeColor[i] == 16777215) {   //красно-зелено-белый угол
+					if (cube.a[0][0][2].miniCubeColor[0] == 16711680 and cube.a[0][0][2].miniCubeColor[2] == 65331 and cube.a[0][0][2].miniCubeColor[4] == 16777215) {
+						break;
+					}
+					else {
+						flag = true;
 						break;
 					}
 				}
-				if (flag2) {
-					rotationFull(5, 6);  //если на ним есть белый, его надо сдивнуть, иначе он будет внизу
-				}
-				else {
-					break;
-				}
+
 			}
-			rotationFull(2, 6);
-			rotationFull(5, -6);
-			rotationFull(2, -6);
-			rotationFull(5, 6);
-
-		}
-
-
-
-		flag = false;
-		flag2 = false;
-		for (int i = 0; i < 6; i++) {
-			if (cube.a[0][2][2].miniCubeColor[i] == 16777215) {   //красно-сине-белый угол
-				if (cube.a[0][2][2].miniCubeColor[0] == 16711680 and cube.a[0][2][2].miniCubeColor[3] == 255 and cube.a[0][2][2].miniCubeColor[4] == 16777215) {
-					break;
-				}
-				else {
-					flag = true;
-					break;
-				}
-			}
-
-		}
-		if (flag) {
-			std::cout << "	red 0 0 blue white 0    (0 2 2)" << '\n';
-			while (true) {
-				for (int i = 0; i < 6; i++) {  // красно-сине-желтый   (проверка есть ли белый цвет)
-					if (cube.a[2][2][2].miniCubeColor[i] == 16777215) {
-						flag2 = true;
+			if (flag) {
+				std::cout << "	red 0 green 0 white 0    (0 0 2)" << '\n';
+				while (true) {
+					for (int i = 0; i < 6; i++) {  // красно-зелено-желтый   (проверка есть ли белый цвет)
+						if (cube.a[2][0][2].miniCubeColor[i] == 16777215) {
+							flag2 = true;
+							break;
+						}
+					}
+					if (flag2) {
+						rotationFull(5, 6);  //если на ним есть белый, его надо сдивнуть, иначе он будет внизу
+					}
+					else {
 						break;
 					}
 				}
-				if (flag2) {
-					rotationFull(5, 6);  //если на ним есть белый, его надо сдивнуть, иначе он будет внизу
-				}
-				else {
-					break;
-				}
+				rotationFull(2, 6);
+				rotationFull(5, -6);
+				rotationFull(2, -6);
+				rotationFull(5, 6);
+
 			}
-			rotationFull(1, -6);
-			rotationFull(5, -6);
-			rotationFull(1, 6);
-			rotationFull(5, 6);
+			else {
+				flag = false;
+				flag2 = false;
+				for (int i = 0; i < 6; i++) {
+					if (cube.a[0][2][2].miniCubeColor[i] == 16777215) {   //красно-сине-белый угол
+						if (cube.a[0][2][2].miniCubeColor[0] == 16711680 and cube.a[0][2][2].miniCubeColor[3] == 255 and cube.a[0][2][2].miniCubeColor[4] == 16777215) {
+							break;
+						}
+						else {
+							flag = true;
+							break;
+						}
+					}
 
-		}
-
-
-		flag = false;
-		flag2 = false;
-		for (int i = 0; i < 6; i++) {
-			if (cube.a[0][2][0].miniCubeColor[i] == 16777215) {   //оранжево-сине-белый угол
-				if (cube.a[0][2][0].miniCubeColor[1] == 16737792 and cube.a[0][2][0].miniCubeColor[3] == 255 and cube.a[0][2][0].miniCubeColor[4] == 16777215) {
-					break;
 				}
+				if (flag) {
+					std::cout << "	red 0 0 blue white 0    (0 2 2)" << '\n';
+					while (true) {
+						for (int i = 0; i < 6; i++) {  // красно-сине-желтый   (проверка есть ли белый цвет)
+							if (cube.a[2][2][2].miniCubeColor[i] == 16777215) {
+								flag2 = true;
+								break;
+							}
+						}
+						if (flag2) {
+							rotationFull(5, 6);  //если на ним есть белый, его надо сдивнуть, иначе он будет внизу
+						}
+						else {
+							break;
+						}
+					}
+					rotationFull(1, -6);
+					rotationFull(5, -6);
+					rotationFull(1, 6);
+					rotationFull(5, 6);
+
+				}
+
 				else {
-					flag = true;
-					break;
-				}
-			}
+					flag = false;
+					flag2 = false;
+					for (int i = 0; i < 6; i++) {
+						if (cube.a[0][2][0].miniCubeColor[i] == 16777215) {   //оранжево-сине-белый угол
+							if (cube.a[0][2][0].miniCubeColor[1] == 16737792 and cube.a[0][2][0].miniCubeColor[3] == 255 and cube.a[0][2][0].miniCubeColor[4] == 16777215) {
+								break;
+							}
+							else {
+								flag = true;
+								break;
+							}
+						}
 
-		}
-		if (flag) {
-			std::cout << "0 orange 0 blue white 0    (0 2 0)" << '\n';
-			while (true) {
-				for (int i = 0; i < 6; i++) {  // оранжево-сине-желтый   (проверка есть ли белый цвет)
-					if (cube.a[2][2][0].miniCubeColor[i] == 16777215) {
-						flag2 = true;
-						break;
+					}
+					if (flag) {
+						std::cout << "0 orange 0 blue white 0    (0 2 0)" << '\n';
+						while (true) {
+							for (int i = 0; i < 6; i++) {  // оранжево-сине-желтый   (проверка есть ли белый цвет)
+								if (cube.a[2][2][0].miniCubeColor[i] == 16777215) {
+									flag2 = true;
+									break;
+								}
+							}
+							if (flag2) {
+								rotationFull(5, 6);  //если на ним есть белый, его надо сдивнуть, иначе он будет внизу
+							}
+							else {
+								break;
+							}
+						}
+						rotationFull(3, -6);
+						rotationFull(5, -6);
+						rotationFull(3, 6);
+						rotationFull(5, 6);
+
 					}
 				}
-				if (flag2) {
-					rotationFull(5, 6);  //если на ним есть белый, его надо сдивнуть, иначе он будет внизу
-				}
-				else {
-					break;
-				}
 			}
-			rotationFull(3, -6);
-			rotationFull(5, -6);
-			rotationFull(3, 6);
-			rotationFull(5, 6);
-
 		}
 	}
 }
@@ -887,7 +886,7 @@ void SloveSecondLayer(RCube& cube) {
 				else if (colorsTempVecCopy[0] == 255 and colorsTempVecCopy[1] == 16711680) {  //сине-красное 2 варианта
 					std::cout << "4.2" << '\n';
 
-					if (cube.a[2][1][0].miniCubeColor[1] == 255) {
+					if (cube.a[2][1][0].miniCubeColor[1] == 255) {   //??????
 						rotationFull(5, 6);
 
 						rotationFull(5, -6);
@@ -1028,7 +1027,7 @@ void SloveSecondLayer(RCube& cube) {
 		//cube.a[1][2][2].miniCubeColor[0] == 16711680 and cube.a[1][2][2].miniCubeColor[3] == 255
 		
 		bool rotateFlag = false;
-		if (cube.a[1][0][0].miniCubeColor[1] != 16737792 and cube.a[1][0][0].miniCubeColor[2] != 65331) {  //оранжево-зеленое ребро
+		if (cube.a[1][0][0].miniCubeColor[1] != 16737792 or cube.a[1][0][0].miniCubeColor[2] != 65331) {  //оранжево-зеленое ребро
 			std::cout << "4.1.1" << '\n';
 			flag = false;
 			for (int i = 0; i < 6; i++) {
@@ -1050,7 +1049,7 @@ void SloveSecondLayer(RCube& cube) {
 		}
 
 
-		if (!rotateFlag and cube.a[1][0][2].miniCubeColor[0] != 16711680 and cube.a[1][0][2].miniCubeColor[2] != 65331) {  //красно-зеленое ребро
+		if (!rotateFlag and (cube.a[1][0][2].miniCubeColor[0] != 16711680 or cube.a[1][0][2].miniCubeColor[2] != 65331)) {  //красно-зеленое ребро
 			std::cout << "4.2.2" << '\n';
 			flag = false;
 			for (int i = 0; i < 6; i++) {
@@ -1071,7 +1070,7 @@ void SloveSecondLayer(RCube& cube) {
 			}
 		}
 
-		if (!rotateFlag and cube.a[1][2][0].miniCubeColor[1] != 16737792 and cube.a[1][2][0].miniCubeColor[3] != 255) {  //оранжево-синее ребро
+		if (!rotateFlag and (cube.a[1][2][0].miniCubeColor[1] != 16737792 or cube.a[1][2][0].miniCubeColor[3] != 255)) {  //оранжево-синее ребро
 			std::cout << "4.3.3" << '\n';
 			flag = false;
 			for (int i = 0; i < 6; i++) {
@@ -1092,7 +1091,7 @@ void SloveSecondLayer(RCube& cube) {
 			}
 		}
 
-		if (!rotateFlag and cube.a[1][2][2].miniCubeColor[0] != 16711680 and cube.a[1][2][2].miniCubeColor[3] != 255) {  //красно-синее ребро
+		if (!rotateFlag and (cube.a[1][2][2].miniCubeColor[0] != 16711680 or cube.a[1][2][2].miniCubeColor[3] != 255)) {  //красно-синее ребро
 			std::cout << "4.4.4" << '\n';
 			flag = false;
 			for (int i = 0; i < 6; i++) {
@@ -1136,6 +1135,7 @@ bool YellowCrossSloved(RCube& cube) {
 
 void SloveYellowCross(RCube& cube) {
 	while (!YellowCrossSloved(cube)) {
+		std::cout << "YellowCross" << '\n';
 		int Ycount = 0;
 		bool YGflag = false, YOflag = false, YBflag = false, YRflag = false;
 		if (cube.a[2][0][1].miniCubeColor[5] == 16776960) {
@@ -1230,7 +1230,7 @@ void SloveYellowCross(RCube& cube) {
 				rotationFull(2, -6);
 			}
 		}
-		if (Ycount == 1) {
+		if (Ycount == 0) {
 			rotationFull(2, 6);  //палка
 			rotationFull(0, 6);
 			rotationFull(5, -6);
@@ -1240,8 +1240,6 @@ void SloveYellowCross(RCube& cube) {
 
 			//rotationFull(5, 6);  //U2
 			//rotationFull(5, 6);
-
-
 		}
 		
 
@@ -1267,6 +1265,7 @@ bool YellowCorrectCrossSloved(RCube& cube) {
 
 void SloveCorrectYellowCross(RCube& cube) {
 	while (!YellowCorrectCrossSloved(cube)) {
+		std::cout << "SloveCorrectYellowCross" << '\n';
 		int Correctcount = 0;
 		bool YGflag = false, YOflag = false, YBflag = false, YRflag = false;
 		if (cube.a[2][0][1].miniCubeColor[2] == 65331) {
@@ -1450,6 +1449,7 @@ bool YellowCornersCorrectPositionSloved(RCube& cube) {
 
 void SloveYellowCornersCorrectPosition(RCube& cube) {
 	while (!YellowCornersCorrectPositionSloved(cube)) {
+		std::cout << "SloveYellowCornersCorrectPosition" << '\n';
 		bool YGOflag = false, YRGflag = false, YBOflag = false, YRBflag = false;
 		int count = 0;
 		findCorner(cube, YGOflag, YRGflag, YBOflag, YRBflag, count);
@@ -1537,11 +1537,8 @@ bool AllCubeSloved(RCube& cube) {
 
 
 void SloveAllCube(RCube& cube) {
-	rotationFull(1, 6);
-	rotationFull(4, -6);
-	rotationFull(1, -6);
-	rotationFull(4, 6);
 	while (!AllCubeSloved(cube)) {
+		std::cout << "SloveAllCube" << '\n';
 		while (cube.a[2][2][2].miniCubeColor[5] != 16776960) {
 			rotationFull(1, 6);
 			rotationFull(4, -6);
@@ -1552,7 +1549,18 @@ void SloveAllCube(RCube& cube) {
 	}
 }
 
+void specialKeys(int key, int, int)
+{
+	if (key == GLUT_KEY_F1) sloveWhiteCross(cube);;
+	if (key == GLUT_KEY_F2) sloveCorrectWhiteCross(cube);
+	if (key == GLUT_KEY_F3) SloveFirstLayer(cube);
+	if (key == GLUT_KEY_F4) SloveSecondLayer(cube);
+	if (key == GLUT_KEY_F5) SloveYellowCross(cube);
+	if (key == GLUT_KEY_F6) SloveCorrectYellowCross(cube);
+	if (key == GLUT_KEY_F7) SloveYellowCornersCorrectPosition(cube);
+	if (key == GLUT_KEY_F8) SloveAllCube(cube);
 
+}
 void keys(unsigned char key, int, int)
 {
 	if (cube.RotNOW == -1 && key >= '0' && key <= '5')
@@ -1654,111 +1662,10 @@ int main(int argc, char** argv)
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keys);
+	glutSpecialFunc(specialKeys);
 	/*glutTimerFunc(TIMER, timerCallback, 0);*/
 	glutTimerFunc(TIMER, timer, 0);
 	
 	glutMainLoop();
 	return 0;
 }
-
-
-//random: 4
-//random : 0
-//random : 3
-//random : 4
-//random : 2
-//random : 0
-//random : 2
-//random : 0
-//random : 0
-//random : 2
-//random : 1
-//4
-//7
-//3
-//5
-//< -------------- >
-//<-------------->
-//< -------------->
-//3: 2
-//3 : 2.2
-//orange green 0 white 0    (0 0 0)
-//red 0 green 0 white 0    (0 0 2)
-//red 0 0 blue white 0    (0 2 2)
-//0 orange 0 blue white 0    (0 2 0)
-//
-//
-//
-//
-//
-//
-//
-//
-//random: 2
-//random : 3
-//random : 2
-//random : 2
-//random : 2
-//random : 1
-//random : 1
-//random : 2
-//random : 2
-//random : 4
-//random : 0
-//random : 5
-//random : 1
-//random : 2
-//random : 4
-//random : 0
-//random : 1
-//random : 1
-//random : 1
-//random : 2
-//random : 2
-//random : 2
-//random : 2
-//random : 4
-//random : 4
-//random : 4
-//random : 1
-//5
-//7
-//10
-//2 : 3
-//< -------------- >
-//< -------------->
-//2 : 4
-//< -------------- >
-//2 : 1
-//2 : 1.2
-//3 : 1
-//3 : 1.1
-//3 : 1
-//3 : 1.2
-//3 : 2
-//3 : 2.1
-//3 : 1
-//3 : 1.3
-//3 : 2
-//3 : 2.1
-//3 : 2
-//3 : 2.1
-//3 : 2
-//3 : 2.1
-//3 : 1
-//3 : 1.4
-//3 : 2
-//3 : 2.2
-//4
-//4.1
-//not only yellow
-//4
-//4.3
-//4
-//4.4
-//4.4 -- > red
-//4.break
-//4.4.4
-//4
-//4.2
-//4.break
