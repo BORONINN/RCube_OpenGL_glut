@@ -1359,6 +1359,151 @@ void SloveCorrectYellowCross(RCube& cube) {
 }
 
 
+void findCorner(RCube& cube, bool& YGOflag, bool& YRGflag, bool& YBOflag, bool& YRBflag, int &count) {
+	std::vector <int> CornerTempVec;
+	for (int i = 0; i < 6; i++) {
+		if (cube.a[2][0][0].miniCubeColor[i] != 0) {
+			CornerTempVec.push_back(cube.a[2][0][0].miniCubeColor[i]);
+		}
+	}
+	std::sort(CornerTempVec.begin(), CornerTempVec.end()); //должен быть оранжевый зеленый желтый
+	if (CornerTempVec[0] == 65331 and CornerTempVec[1] == 16737792 and CornerTempVec[2] == 16776960) {
+		YGOflag = true;
+		count++;
+	}
+
+
+	CornerTempVec.clear();
+	for (int i = 0; i < 6; i++) {
+		if (cube.a[2][0][2].miniCubeColor[i] != 0) {
+			CornerTempVec.push_back(cube.a[2][0][2].miniCubeColor[i]);
+		}
+	}
+	std::sort(CornerTempVec.begin(), CornerTempVec.end()); //должен быть красный зеленый желтый
+	if (CornerTempVec[0] == 65331 and CornerTempVec[1] == 16711680 and CornerTempVec[2] == 16776960) {
+		YRGflag = true;
+		count++;
+	}
+		
+
+
+	CornerTempVec.clear();
+	for (int i = 0; i < 6; i++) {
+		if (cube.a[2][2][0].miniCubeColor[i] != 0) {
+			CornerTempVec.push_back(cube.a[2][2][0].miniCubeColor[i]);
+		}
+	}
+	std::sort(CornerTempVec.begin(), CornerTempVec.end()); //должен быть оранжевый синий желтый
+	if (CornerTempVec[0] == 255 and CornerTempVec[1] == 16737792 and CornerTempVec[2] == 16776960) {
+		YBOflag = true;
+		count++;
+	}
+
+
+	CornerTempVec.clear();
+	for (int i = 0; i < 6; i++) {
+		if (cube.a[2][2][2].miniCubeColor[i] != 0) {
+			CornerTempVec.push_back(cube.a[2][2][2].miniCubeColor[i]);
+		}
+	}
+	std::sort(CornerTempVec.begin(), CornerTempVec.end()); //должен быть красный синий желтый
+	if (CornerTempVec[0] == 255 and CornerTempVec[1] == 16711680 and CornerTempVec[2] == 16776960) {
+		YRBflag = true;
+		count++;
+	}
+}
+
+
+
+bool YellowCornersCorrectPositionSloved(RCube& cube) {
+	// синий  зеленый  красный      оранжевый    желтый      белый
+	// 255    65331    16711680     16737792     16776960     16777215
+	bool YGOflag = false, YRGflag = false, YBOflag = false, YRBflag = false;
+	int count = 0;
+	findCorner(cube, YGOflag, YRGflag, YBOflag, YRBflag, count);
+
+	if (WhiteCrossSloved(cube) and
+		WhiteCorrectCrossSloved(cube) and
+		FirstLayerSloved(cube) and
+		SecondLayerSloved(cube) and
+		YellowCrossSloved(cube) and
+		YellowCorrectCrossSloved and 
+		YGOflag and YRGflag and YBOflag and YRBflag) {
+		return true;
+	}
+	return false;
+}
+
+
+
+void SloveYellowCornersCorrectPosition(RCube& cube) {
+	while (!YellowCornersCorrectPositionSloved(cube)) {
+		bool YGOflag = false, YRGflag = false, YBOflag = false, YRBflag = false;
+		int count = 0;
+		findCorner(cube, YGOflag, YRGflag, YBOflag, YRBflag, count);
+		std::cout << count << '\n';
+
+		if (count == 0) {
+			rotationFull(5, -6);  //YRB
+			rotationFull(1, -6);
+			rotationFull(5, 6);
+			rotationFull(0, -6);
+
+			rotationFull(5, -6);
+			rotationFull(1, 6);
+			rotationFull(5, 6);
+			rotationFull(0, 6);
+		}
+		else if (count == 1) {
+			if (YGOflag) {
+				rotationFull(5, -6);  
+				rotationFull(0, 6);
+				rotationFull(5, 6);
+				rotationFull(1, 6);
+
+				rotationFull(5, -6);
+				rotationFull(0, -6);
+				rotationFull(5, 6);
+				rotationFull(1, -6);
+			}
+			else if(YRGflag){
+				rotationFull(5, -6);
+				rotationFull(2, 6);
+				rotationFull(5, 6);
+				rotationFull(3, 6);
+
+				rotationFull(5, -6);
+				rotationFull(2, -6);
+				rotationFull(5, 6);
+				rotationFull(3, -6);
+			}
+			else if (YBOflag) {
+				rotationFull(5, -6);
+				rotationFull(3, -6);
+				rotationFull(5, 6);
+				rotationFull(2, -6);
+
+				rotationFull(5, -6);
+				rotationFull(3, 6);
+				rotationFull(5, 6);
+				rotationFull(2, 6);
+			}
+			else if (YRBflag) {
+				rotationFull(5, -6);  //YRB
+				rotationFull(1, -6);
+				rotationFull(5, 6);
+				rotationFull(0, -6);
+
+				rotationFull(5, -6);
+				rotationFull(1, 6);
+				rotationFull(5, 6);
+				rotationFull(0, 6);
+			}
+		}
+
+	}
+}
+
 
 void keys(unsigned char key, int, int)
 {
@@ -1384,7 +1529,7 @@ void keys(unsigned char key, int, int)
 		Movment = 1 - Movment;
 	}
 	if (key == '9') {
-		
+		SloveYellowCornersCorrectPosition(cube);
 	}
 
 	else if (key == 'w' or key == 'a' or key == 's' or key == 'd') {
