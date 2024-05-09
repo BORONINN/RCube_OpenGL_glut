@@ -820,6 +820,18 @@ bool SecondLayerSloved(RCube& cube) {
 	return false;
 }
 
+//not only yellow
+//4
+//4.4
+//4.4 -- > green
+//4
+//4.3
+//not only yellow
+//4
+//4.2
+//4.break
+
+
 // синий  зеленый  красный      оранжевый    желтый      белый
 // 255    65331    16711680     16737792     16776960     16777215
 std::vector <int> colorsTempVecCopy;
@@ -1504,6 +1516,42 @@ void SloveYellowCornersCorrectPosition(RCube& cube) {
 	}
 }
 
+bool AllCubeSloved(RCube& cube) {
+	// синий  зеленый  красный      оранжевый    желтый      белый
+	// 255    65331    16711680     16737792     16776960     16777215
+	if (WhiteCrossSloved(cube) and
+		WhiteCorrectCrossSloved(cube) and
+		FirstLayerSloved(cube) and
+		SecondLayerSloved(cube) and
+		YellowCrossSloved(cube) and
+		YellowCorrectCrossSloved and
+		cube.a[2][0][0].miniCubeColor[1] == 16737792 and cube.a[2][0][0].miniCubeColor[2] == 65331 and cube.a[2][0][0].miniCubeColor[5] == 16776960 and
+		cube.a[2][0][2].miniCubeColor[0] == 16711680 and cube.a[2][0][2].miniCubeColor[2] == 65331 and cube.a[2][0][2].miniCubeColor[5] == 16776960 and
+		cube.a[2][2][0].miniCubeColor[1] == 16737792 and cube.a[2][2][0].miniCubeColor[3] == 255   and cube.a[2][2][0].miniCubeColor[5] == 16776960 and
+		cube.a[2][2][2].miniCubeColor[0] == 16711680 and cube.a[2][2][2].miniCubeColor[3] == 255   and cube.a[2][2][2].miniCubeColor[5] == 16776960) {
+		return true;
+	}
+	return false;
+}
+
+
+
+void SloveAllCube(RCube& cube) {
+	rotationFull(1, 6);
+	rotationFull(4, -6);
+	rotationFull(1, -6);
+	rotationFull(4, 6);
+	while (!AllCubeSloved(cube)) {
+		while (cube.a[2][2][2].miniCubeColor[5] != 16776960) {
+			rotationFull(1, 6);
+			rotationFull(4, -6);
+			rotationFull(1, -6);
+			rotationFull(4, 6);
+		}
+		rotationFull(5, 6);
+	}
+}
+
 
 void keys(unsigned char key, int, int)
 {
@@ -1520,6 +1568,8 @@ void keys(unsigned char key, int, int)
 		SloveSecondLayer(cube);
 		SloveYellowCross(cube);
 		SloveCorrectYellowCross(cube);
+		SloveYellowCornersCorrectPosition(cube);
+		SloveAllCube(cube);
 	}
 	if (key == '7') {
 		cube.clear(CUBE_SIZE, c);
@@ -1529,7 +1579,7 @@ void keys(unsigned char key, int, int)
 		Movment = 1 - Movment;
 	}
 	if (key == '9') {
-		SloveYellowCornersCorrectPosition(cube);
+		
 	}
 
 	else if (key == 'w' or key == 'a' or key == 's' or key == 'd') {
@@ -1610,3 +1660,105 @@ int main(int argc, char** argv)
 	glutMainLoop();
 	return 0;
 }
+
+
+//random: 4
+//random : 0
+//random : 3
+//random : 4
+//random : 2
+//random : 0
+//random : 2
+//random : 0
+//random : 0
+//random : 2
+//random : 1
+//4
+//7
+//3
+//5
+//< -------------- >
+//<-------------->
+//< -------------->
+//3: 2
+//3 : 2.2
+//orange green 0 white 0    (0 0 0)
+//red 0 green 0 white 0    (0 0 2)
+//red 0 0 blue white 0    (0 2 2)
+//0 orange 0 blue white 0    (0 2 0)
+//
+//
+//
+//
+//
+//
+//
+//
+//random: 2
+//random : 3
+//random : 2
+//random : 2
+//random : 2
+//random : 1
+//random : 1
+//random : 2
+//random : 2
+//random : 4
+//random : 0
+//random : 5
+//random : 1
+//random : 2
+//random : 4
+//random : 0
+//random : 1
+//random : 1
+//random : 1
+//random : 2
+//random : 2
+//random : 2
+//random : 2
+//random : 4
+//random : 4
+//random : 4
+//random : 1
+//5
+//7
+//10
+//2 : 3
+//< -------------- >
+//< -------------->
+//2 : 4
+//< -------------- >
+//2 : 1
+//2 : 1.2
+//3 : 1
+//3 : 1.1
+//3 : 1
+//3 : 1.2
+//3 : 2
+//3 : 2.1
+//3 : 1
+//3 : 1.3
+//3 : 2
+//3 : 2.1
+//3 : 2
+//3 : 2.1
+//3 : 2
+//3 : 2.1
+//3 : 1
+//3 : 1.4
+//3 : 2
+//3 : 2.2
+//4
+//4.1
+//not only yellow
+//4
+//4.3
+//4
+//4.4
+//4.4 -- > red
+//4.break
+//4.4.4
+//4
+//4.2
+//4.break
